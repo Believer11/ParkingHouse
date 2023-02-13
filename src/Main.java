@@ -21,13 +21,16 @@ public class Main {
         for (int i = 0 ; i <4; i++) {
             ParkingLot p = new ParkingLot();
             parkingLots.add(p);
-            ;
+
 
         }
 
+//        Scanner s = new Scanner(System.in);
+//        ParkingLot parkingLot = new ParkingLot(s);
 
 //
 //
+
 ////          User input
 //
 //        Scanner scanner = new Scanner(System.in);

@@ -7,7 +7,15 @@ public class ParkingLot {
     private final int PRICE_WEEK = 100;
     public List<Vehicle> parkedCars;
     public HashMap<Vehicle, Integer> parking;
+    Scanner s;
 
+    public ParkingLot(List<Vehicle> parkedCars, HashMap<Vehicle, Integer> parking, Scanner s, String name, int vehicleLicensePlate) {
+        this.parkedCars = parkedCars;
+        this.parking = parking;
+        this.s = s;
+        this.name = name;
+        this.vehicleLicensePlate = vehicleLicensePlate;
+    }
 
     String name;
     int vehicleLicensePlate;

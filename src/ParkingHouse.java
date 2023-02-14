@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class ParkingLot {
+public class ParkingHouse {
 
     private final int PRICE_HOUR = 3;
     private final int PRICE_DAY = 20;
@@ -8,21 +8,19 @@ public class ParkingLot {
     public List<Vehicle> parkedCars;
     public HashMap<Vehicle, Integer> parking;
     Scanner s;
+    public MyJDBC database;
 
-    public ParkingLot(List<Vehicle> parkedCars, HashMap<Vehicle, Integer> parking, Scanner s, String name, int vehicleLicensePlate) {
-        this.parkedCars = parkedCars;
-        this.parking = parking;
-        this.s = s;
-        this.name = name;
-        this.vehicleLicensePlate = vehicleLicensePlate;
-    }
+
+
+
 
     String name;
     int vehicleLicensePlate;
 
-    public ParkingLot() {
+    public ParkingHouse() {
         parkedCars = new ArrayList<>();
         parking = new HashMap<>();
+        this.database = new MyJDBC();
     }
 
     public boolean addVehicle(Vehicle v, int parkingDays) {
@@ -61,7 +59,7 @@ public class ParkingLot {
         Set<String> licensePlates = new TreeSet<>();
         System.out.println("If you want to park a car please press YES,if not please press NO" + " ");
         String userAnswer = scanner.nextLine();
-        while (parkedCars.isEmpty() && userAnswer.equals("yes"))
+        while (isEmpty() && userAnswer.equals("yes"))
 
 
 
@@ -96,14 +94,14 @@ public class ParkingLot {
                     v.setLicensePlate(licensePlate);
 
                     startPaying();
-                    MyJDBC.update(new Vehicle(v.getId(), v.getName(),v.getLicensePlate()));
+                    database.update(v);
 
                     }
                 System.out.println("If you want to park a car please press YES,if not please press NO" + " ");
                 String lastInput = scanner.nextLine();
                 if (lastInput.contains("no")){
 
-                    MyJDBC.update(new Vehicle(v.getId(), v.getName(),v.getLicensePlate()));
+                    database.update(v);
                     break;
 
 
@@ -177,6 +175,10 @@ public class ParkingLot {
 
             return result;
         }
+
+//    public String getParkedCars() {
+//        return database.getCars();
+//    }
 
 //    public String getVehicles() {
 //        //TODO: return databse.getAll() returnujuca string
